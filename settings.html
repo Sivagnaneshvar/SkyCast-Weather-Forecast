@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyCast – Settings</title>
+  <meta name="description" content="Customize your SkyCast weather forecast experience, notifications and app behaviour.">
+
+  <!-- Google Fonts for Modern Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme Engine (Zero-flash theme initialization) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core & Screen Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/settings.css">
+</head>
+<body>
+
+  <!-- Full Application Wrapper with Scenic Background -->
+  <div class="app-container">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- 1. LEFT SIDEBAR (Transparent Frosted Glass) -->
+    <aside class="sidebar" id="sidebar">
+
+      <!-- Logo & Branding -->
+      <div class="brand-wrapper">
+        <div class="brand-icon-box">
+          <svg class="brand-cloud-icon" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SkyCast</span>
+          <span class="brand-subtitle">Weather Forecast</span>
+        </div>
+        <!-- Mobile Sidebar Close Button -->
+        <button class="btn-sidebar-close" id="sidebarCloseBtn" aria-label="Close navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Section -->
+      <nav class="nav-section">
+        <!-- Home -->
+        <a href="index.html" class="nav-link" title="Home Dashboard">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Forecast -->
+        <a href="forecast.html" class="nav-link" title="Detailed Forecast">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>Forecast</span>
+        </a>
+
+        <!-- Saved Locations -->
+        <a href="saved-locations.html" class="nav-link" title="Saved Locations">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Saved Locations</span>
+        </a>
+
+        <!-- Alerts -->
+        <a href="alerts.html" class="nav-link" title="Weather Alerts">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span>Alerts</span>
+          <span class="nav-badge-dot" title="Active alerts"></span>
+        </a>
+
+        <!-- Settings (Active) -->
+        <a href="settings.html" class="nav-link active" title="Settings">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <!-- My Locations Section -->
+      <div class="locations-section">
+        <div class="section-header-row">
+          <span class="section-title-sm">My Locations</span>
+          <button class="btn-add-location" title="Manage locations" aria-label="Manage locations" onclick="window.location.href='saved-locations.html'">+</button>
+        </div>
+        <ul class="location-item-list" id="sidebarLocationsList">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </div>
+
+      <!-- Install SkyCast Card -->
+      <div class="install-card">
+        <div class="install-header">
+          <div class="install-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <span class="install-title">Install SkyCast</span>
+        </div>
+        <p class="install-desc">Add to your device for a native app experience.</p>
+        <button class="btn-install" id="btnInstallApp">Install</button>
+      </div>
+
+    </aside>
+
+    <!-- 2. MAIN VIEWPORT (Header + Settings Content) -->
+    <main class="main-viewport">
+
+      <!-- Top Header Bar -->
+      <header class="top-header">
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn-mobile-menu" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- User Greeting -->
+        <div class="user-greeting">
+          <span class="greeting-sub">Good Evening,</span>
+          <h1 class="greeting-name">Sivagnaneshvar</h1>
+        </div>
+
+        <!-- City Search Bar with Shortcut -->
+        <div class="search-wrapper">
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input
+              type="text"
+              id="topSearchInput"
+              class="search-input"
+              placeholder="Search for a city or place..."
+              autocomplete="off"
+            />
+            <span class="search-kbd">/</span>
+          </div>
+          <!-- Dynamic Autocomplete Suggestions -->
+          <div class="search-results-dropdown" id="topSearchResults"></div>
+        </div>
+
+        <!-- Right Side Header Controls -->
+        <div class="header-actions">
+          <!-- Celsius / Fahrenheit Unit Toggle -->
+          <div class="temp-toggle-capsule" role="radiogroup" aria-label="Temperature unit selection">
+            <button class="unit-btn active" data-unit="C" aria-label="Celsius">°C</button>
+            <button class="unit-btn" data-unit="F" aria-label="Fahrenheit">°F</button>
+          </div>
+
+          <!-- Notification Bell Button -->
+          <div class="btn-bell-wrapper">
+            <button class="btn-icon-circle" id="bellBtn" aria-label="View notifications">
+              <svg viewBox="0 0 24 24">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="bell-badge-dot" id="bellBadge"></span>
+            </button>
+
+            <!-- Notifications Dropdown Popover -->
+            <div class="notifications-dropdown" id="notificationsDropdown">
+              <div class="notifications-header">
+                <span class="notifications-title">Notifications</span>
+                <button class="btn-mark-read" id="markAllReadBtn">Mark all read</button>
+              </div>
+              <ul class="notification-list" id="headerNotificationsList">
+                <!-- Injected via JS -->
+              </ul>
+            </div>
+          </div>
+
+          <!-- User Profile Avatar -->
+          <div class="profile-avatar-box" title="User Profile">
+            <img src="assets/images/avatar.jpg" alt="Sivagnaneshvar" class="profile-avatar-img">
+          </div>
+        </div>
+
+      </header>
+
+      <!-- ========== SETTINGS PAGE CONTENT ========== -->
+
+      <!-- Page Header -->
+      <section class="settings-page-header">
+        <div class="settings-title-row">
+          <div class="settings-header-icon-box">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </div>
+          <h2 class="settings-page-title">Settings</h2>
+        </div>
+        <p class="settings-page-subtitle">Customize your SkyCast experience, notifications and app behaviour.</p>
+      </section>
+
+      <!-- Settings Two-Column Grid -->
+      <div class="settings-main-grid">
+
+        <!-- LEFT COLUMN -->
+        <div class="settings-left-col">
+
+          <!-- 1. General Settings -->
+          <section class="glass-panel settings-section" id="generalSection">
+            <div class="section-heading-row">
+              <svg class="section-icon" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+              </svg>
+              <h3 class="section-heading-text">General Settings</h3>
+            </div>
+
+            <!-- Temperature Unit -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path></svg>
+                <div>
+                  <span class="setting-name">Temperature Unit</span>
+                  <span class="setting-desc">Choose your preferred temperature unit.</span>
+                </div>
+              </div>
+              <div class="temp-unit-toggle" id="settingsTempUnit">
+                <button class="setting-unit-btn active" data-unit="C">°C</button>
+                <button class="setting-unit-btn" data-unit="F">°F</button>
+              </div>
+            </div>
+
+            <!-- Default Location -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                <div>
+                  <span class="setting-name">Default Location</span>
+                  <span class="setting-desc">Set your home location for quick access.</span>
+                </div>
+              </div>
+              <div class="setting-select-wrap">
+                <select class="setting-select" id="settingsDefaultLocation">
+                  <option value="coimbatore">Coimbatore</option>
+                  <option value="chennai">Chennai</option>
+                  <option value="ooty">Ooty</option>
+                  <option value="madurai">Madurai</option>
+                  <option value="bengaluru">Bengaluru</option>
+                  <option value="salem">Salem</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Language -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                <div>
+                  <span class="setting-name">Language</span>
+                  <span class="setting-desc">Select app language.</span>
+                </div>
+              </div>
+              <div class="setting-select-wrap">
+                <select class="setting-select" id="settingsLanguage">
+                  <option value="en">English</option>
+                  <option value="ta">Tamil</option>
+                  <option value="hi">Hindi</option>
+                  <option value="es">Spanish</option>
+                  <option value="fr">French</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Theme -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                <div>
+                  <span class="setting-name">Theme</span>
+                  <span class="setting-desc">Choose your preferred appearance.</span>
+                </div>
+              </div>
+              <div class="theme-toggle-group" id="settingsThemeToggle">
+                <button class="theme-btn" data-theme="light">
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                  Light
+                </button>
+                <button class="theme-btn active" data-theme="dark">
+                  <svg viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                  Dark
+                </button>
+                <button class="theme-btn" data-theme="system">
+                  <svg viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  System
+                </button>
+              </div>
+            </div>
+          </section>
+
+          <!-- 2. Appearance & Personalization -->
+          <section class="glass-panel settings-section" id="appearanceSection">
+            <div class="section-heading-row">
+              <svg class="section-icon" viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path></svg>
+              <h3 class="section-heading-text">Appearance & Personalization</h3>
+            </div>
+
+            <!-- Background Image Gallery -->
+            <div class="bg-gallery-wrap">
+              <div class="bg-gallery" id="bgGallery">
+                <button class="bg-thumb active" data-bg="hills" title="Hills">
+                  <div class="bg-thumb-img" style="background: linear-gradient(135deg, #1a4731, #2d5a3f, #1a6b3c);"></div>
+                  <span class="bg-thumb-check">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
+                  <span class="bg-thumb-label">Hills</span>
+                </button>
+                <button class="bg-thumb" data-bg="mountains" title="Mountains">
+                  <div class="bg-thumb-img" style="background: linear-gradient(135deg, #1e3a5f, #2d4a6f, #3a5a8f);"></div>
+                  <span class="bg-thumb-check">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
+                  <span class="bg-thumb-label">Mountains</span>
+                </button>
+                <button class="bg-thumb" data-bg="snow" title="Snow">
+                  <div class="bg-thumb-img" style="background: linear-gradient(135deg, #4a6fa5, #7b9cc5, #a5c5e5);"></div>
+                  <span class="bg-thumb-check">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
+                  <span class="bg-thumb-label">Snow</span>
+                </button>
+                <button class="bg-thumb" data-bg="beach" title="Beach">
+                  <div class="bg-thumb-img" style="background: linear-gradient(135deg, #0c4a6e, #0e7490, #22d3ee);"></div>
+                  <span class="bg-thumb-check">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
+                  <span class="bg-thumb-label">Beach</span>
+                </button>
+                <button class="bg-thumb" data-bg="city" title="City">
+                  <div class="bg-thumb-img" style="background: linear-gradient(135deg, #1e1b4b, #312e81, #4338ca);"></div>
+                  <span class="bg-thumb-check">
+                    <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                  </span>
+                  <span class="bg-thumb-label">City</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Weather-Based Background -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path></svg>
+                <div>
+                  <span class="setting-name">Weather-Based Background</span>
+                  <span class="setting-desc">Automatically change background based on current weather condition.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsWeatherBg">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Glassmorphism Effect -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
+                <div>
+                  <span class="setting-name">Glassmorphism Effect</span>
+                  <span class="setting-desc">Enable frosted glass card appearance across all screens.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsGlassEffect" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Automatic Location Detection -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+                <div>
+                  <span class="setting-name">Automatic Location Detection</span>
+                  <span class="setting-desc">Use GPS to detect your current city. <span class="demo-tag">Demo</span></span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsAutoLocation">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </section>
+
+          <!-- 5. App & About -->
+          <section class="glass-panel settings-section" id="aboutSection">
+            <div class="section-heading-row">
+              <svg class="section-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+              <h3 class="section-heading-text">App & About</h3>
+            </div>
+
+            <div class="about-app-row">
+              <div class="about-app-logo">
+                <svg viewBox="0 0 24 24">
+                  <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+                </svg>
+              </div>
+              <div class="about-app-info">
+                <span class="about-app-name">SkyCast</span>
+                <span class="about-app-ver">Version 1.0.0</span>
+              </div>
+              <p class="about-app-desc">A modern weather forecast app with real-time updates, alerts and beautiful experiences.</p>
+            </div>
+
+            <div class="about-links-grid">
+              <a href="#" class="about-link-card" id="aboutHelp">
+                <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <span class="about-link-title">Help & Guide</span>
+                <span class="about-link-sub">Learn how to use SkyCast</span>
+              </a>
+              <a href="#" class="about-link-card" id="aboutPrivacy">
+                <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                <span class="about-link-title">Privacy Policy</span>
+                <span class="about-link-sub">How we handle your data</span>
+              </a>
+              <a href="#" class="about-link-card" id="aboutTerms">
+                <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+                <span class="about-link-title">Terms of Use</span>
+                <span class="about-link-sub">App usage terms and conditions</span>
+              </a>
+              <a href="#" class="about-link-card" id="aboutRate">
+                <svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                <span class="about-link-title">Rate SkyCast</span>
+                <span class="about-link-sub">Support us with a review</span>
+              </a>
+              <a href="#" class="about-link-card" id="aboutUpdates">
+                <svg viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                <span class="about-link-title">Check for Updates</span>
+                <span class="about-link-sub">Get the latest version</span>
+              </a>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="settings-right-col">
+
+          <!-- 3. Notification Settings -->
+          <section class="glass-panel settings-section" id="notificationsSection">
+            <div class="section-heading-row">
+              <svg class="section-icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+              <h3 class="section-heading-text">Notification Settings</h3>
+            </div>
+
+            <!-- In-App Notifications -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                <div>
+                  <span class="setting-name">In-App Notifications</span>
+                  <span class="setting-desc">Receive weather alerts and updates inside the app.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsInAppNotif" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Browser Notifications -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+                <div>
+                  <span class="setting-name">Browser Notifications</span>
+                  <span class="setting-desc">Get real-time weather alerts in your browser.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsBrowserNotif">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Daily Weather Summary -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <div>
+                  <span class="setting-name">Daily Weather Summary</span>
+                  <span class="setting-desc">A short weather update every day.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsDailySummary" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Rain Alerts -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><line x1="16" y1="13" x2="16" y2="21"></line><line x1="8" y1="13" x2="8" y2="21"></line><line x1="12" y1="15" x2="12" y2="23"></line><path d="M20 16.58A5 5 0 0 0 18 7h-1.26A8 8 0 1 0 4 15.25"></path></svg>
+                <div>
+                  <span class="setting-name">Rain Alerts</span>
+                  <span class="setting-desc">Get notified before it rains.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsRainAlert" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Thunderstorm Alerts -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M19 16.9A5 5 0 0 0 18 7h-1.26a8 8 0 1 0-11.62 9"></path><polyline points="13 11 9 17 15 17 11 23"></polyline></svg>
+                <div>
+                  <span class="setting-name">Thunderstorm Alerts</span>
+                  <span class="setting-desc">Alerts for thunder and lightning.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsThunderAlert" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Severe Weather Alerts -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>
+                <div>
+                  <span class="setting-name">Severe Weather Alerts</span>
+                  <span class="setting-desc">Important alerts like heavy rain, storms and cyclones.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsSevereAlert" checked>
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Temperature Change Alerts -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+                <div>
+                  <span class="setting-name">Temperature Change Alerts</span>
+                  <span class="setting-desc">Notify when temperature shifts significantly.</span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsTempChangeAlert">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+          </section>
+
+          <!-- 4. Data & Offline -->
+          <section class="glass-panel settings-section" id="dataSection">
+            <div class="section-heading-row">
+              <svg class="section-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+              <h3 class="section-heading-text">Data & Offline</h3>
+            </div>
+
+            <!-- Offline Support -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+                <div>
+                  <span class="setting-name">Offline Support</span>
+                  <span class="setting-desc">Show last fetched weather data when you're offline. <span class="demo-tag">Demo</span></span>
+                </div>
+              </div>
+              <label class="toggle-switch">
+                <input type="checkbox" id="settingsOffline">
+                <span class="toggle-slider"></span>
+              </label>
+            </div>
+
+            <!-- Auto Refresh -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><polyline points="23 4 23 10 17 10"></polyline><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path></svg>
+                <div>
+                  <span class="setting-name">Auto Refresh</span>
+                  <span class="setting-desc">Automatically update weather data at the selected interval.</span>
+                </div>
+              </div>
+              <div class="setting-select-wrap">
+                <select class="setting-select" id="settingsRefreshInterval">
+                  <option value="off">Off (Disabled)</option>
+                  <option value="5">5 minutes</option>
+                  <option value="10">10 minutes</option>
+                  <option value="15">15 minutes</option>
+                  <option value="30" selected>30 minutes</option>
+                  <option value="60">1 hour</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Clear Cache -->
+            <div class="setting-row">
+              <div class="setting-info">
+                <svg class="setting-row-icon" viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg>
+                <div>
+                  <span class="setting-name">Clear Cache</span>
+                  <span class="setting-desc">Remove stored weather data and images.</span>
+                </div>
+              </div>
+              <button class="btn-danger-sm" id="settingsClearCache">Clear</button>
+            </div>
+
+            <!-- Last Updated Info -->
+            <div class="setting-row last-updated-row">
+              <span class="setting-last-updated" id="settingsLastUpdated">Last updated: –</span>
+            </div>
+          </section>
+
+          <!-- Reset Settings -->
+          <section class="glass-panel settings-section settings-reset-section">
+            <button class="btn-reset-defaults" id="settingsResetBtn">
+              <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
+              Reset to Default Settings
+            </button>
+          </section>
+
+        </div>
+
+      </div>
+
+      <!-- Toast Notification -->
+      <div class="settings-toast" id="settingsToast">
+        <svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+        <span id="settingsToastMsg">Settings saved</span>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/weather-service.js"></script>
+  <script src="js/settings.js"></script>
+</body>
+</html>

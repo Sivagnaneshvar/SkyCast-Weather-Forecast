@@ -1,0 +1,968 @@
+/* ==========================================================================
+   SkyCast Weather Forecast - Saved Locations Screen Styles
+   Theme: Premium Dark Glassmorphism with Scenic Background
+   ========================================================================== */
+
+/* --- Screen Header Section --- */
+.saved-locations-header {
+  margin-bottom: 22px;
+}
+
+.saved-title-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 6px;
+}
+
+.saved-header-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--border-radius-md);
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.22), rgba(2, 132, 199, 0.35));
+  border: 1px solid rgba(56, 189, 248, 0.45);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.saved-header-icon-box svg {
+  width: 22px;
+  height: 22px;
+  fill: #38bdf8;
+  filter: drop-shadow(0 0 6px rgba(56, 189, 248, 0.6));
+}
+
+.saved-page-title {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  color: #ffffff;
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+}
+
+.saved-page-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.4;
+  margin-left: 2px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* --- Search and Add City Bar Row --- */
+.search-add-bar-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.saved-search-wrapper {
+  position: relative;
+  flex: 1;
+}
+
+.saved-search-box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  border-radius: var(--border-radius-pill);
+  background: rgba(13, 23, 38, 0.55);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.28);
+  transition: var(--transition-smooth);
+}
+
+.saved-search-box:focus-within {
+  border-color: var(--accent-cyan);
+  background: rgba(16, 28, 46, 0.8);
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+.saved-search-box svg {
+  width: 19px;
+  height: 19px;
+  stroke: var(--text-muted);
+  stroke-width: 2.2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.saved-search-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #ffffff;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.saved-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.48);
+}
+
+.btn-add-location-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 24px;
+  border-radius: var(--border-radius-pill);
+  background: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 18px rgba(2, 132, 199, 0.45);
+  transition: var(--transition-smooth);
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.btn-add-location-pill:hover {
+  background: #0294df;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 22px rgba(2, 132, 199, 0.6);
+}
+
+.btn-add-location-pill svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  stroke-width: 2.5;
+  fill: none;
+}
+
+/* Autocomplete Dropdown */
+.saved-search-dropdown {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: rgba(11, 20, 34, 0.94);
+  backdrop-filter: blur(28px);
+  -webkit-backdrop-filter: blur(28px);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-lg);
+  box-shadow: var(--shadow-glass);
+  padding: 8px;
+  z-index: 150;
+  display: none;
+  max-height: 260px;
+  overflow-y: auto;
+}
+
+.saved-search-dropdown.visible {
+  display: block;
+  animation: fadeInDown 0.18s ease forwards;
+}
+
+.saved-search-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 13.5px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+
+.saved-search-item:hover {
+  background: rgba(56, 189, 248, 0.18);
+}
+
+.saved-search-item-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.saved-search-item-info svg {
+  width: 15px;
+  height: 15px;
+  stroke: var(--accent-cyan);
+  fill: none;
+  stroke-width: 2;
+}
+
+.saved-search-item-badge {
+  font-size: 11.5px;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background: rgba(56, 189, 248, 0.15);
+  padding: 3px 8px;
+  border-radius: 6px;
+}
+
+/* --- Stats Summary Bar --- */
+.stats-summary-bar {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 16px 24px;
+  border-radius: var(--border-radius-xl);
+  background: rgba(11, 20, 34, 0.55);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(24px) saturate(170%);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  margin-bottom: 24px;
+}
+
+.stat-item-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stat-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stat-icon-wrapper svg {
+  width: 19px;
+  height: 19px;
+  stroke: var(--accent-cyan);
+  fill: none;
+  stroke-width: 2;
+}
+
+.stat-icon-wrapper.fav svg {
+  stroke: var(--accent-sun);
+}
+
+.stat-icon-wrapper.refresh svg {
+  stroke: #4ade80;
+}
+
+.stat-text-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.stat-main-value {
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+.stat-label-muted {
+  font-size: 11.5px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* --- Main Layout Grid --- */
+.saved-main-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.85fr) minmax(310px, 1fr);
+  gap: 24px;
+  align-items: start;
+}
+
+/* --- Left Column: Saved City Cards Grid --- */
+.saved-cards-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+}
+
+/* Saved City Weather Card */
+.city-weather-card {
+  position: relative;
+  background: rgba(11, 20, 34, 0.58);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--border-radius-xl);
+  backdrop-filter: blur(28px) saturate(170%);
+  -webkit-backdrop-filter: blur(28px) saturate(170%);
+  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.38);
+  padding: 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  transition: all 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  user-select: none;
+}
+
+.city-weather-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.48);
+}
+
+/* Active / Selected Glowing State */
+.city-weather-card.active {
+  border-color: rgba(56, 189, 248, 0.85);
+  box-shadow: 0 0 24px rgba(56, 189, 248, 0.38), inset 0 0 16px rgba(56, 189, 248, 0.12);
+}
+
+/* Card Top Row */
+.card-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.card-location-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-pin-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(2, 132, 199, 0.25);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-pin-circle svg {
+  width: 17px;
+  height: 17px;
+  fill: #0284c7;
+  stroke: var(--accent-cyan);
+  stroke-width: 1.5;
+}
+
+.card-city-name-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-city-title {
+  font-size: 17.5px;
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.2px;
+}
+
+.card-region-subtitle {
+  font-size: 11.5px;
+  color: var(--text-muted);
+}
+
+/* Favourite Star Button */
+.btn-fav-star {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-bounce);
+}
+
+.btn-fav-star:hover {
+  transform: scale(1.2);
+}
+
+.btn-fav-star svg {
+  width: 22px;
+  height: 22px;
+  stroke: rgba(255, 255, 255, 0.45);
+  stroke-width: 2;
+  fill: none;
+  transition: var(--transition-smooth);
+}
+
+.btn-fav-star.active svg {
+  stroke: #facc15;
+  fill: #facc15;
+  filter: drop-shadow(0 0 8px rgba(250, 204, 21, 0.65));
+}
+
+/* Card Body Content */
+.card-body-content {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 16px;
+  margin-top: 2px;
+}
+
+.card-weather-icon-box {
+  width: 58px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.card-weather-icon-box svg {
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 4px 14px rgba(250, 204, 21, 0.4));
+}
+
+.card-temp-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-temperature {
+  font-size: 34px;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -1px;
+  line-height: 1;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+
+.card-condition-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  margin-top: 4px;
+  white-space: nowrap;
+}
+
+/* Card Metrics Column */
+.card-metrics-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.card-metric-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.card-metric-row svg {
+  width: 14px;
+  height: 14px;
+  stroke: var(--accent-cyan);
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+/* Card Actions Menu & Button */
+.card-actions-wrapper {
+  position: relative;
+  align-self: flex-end;
+  margin-left: 6px;
+}
+
+.btn-card-menu {
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition-smooth);
+}
+
+.btn-card-menu:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.btn-card-menu svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+.card-menu-dropdown {
+  position: absolute;
+  bottom: calc(100% + 6px);
+  right: 0;
+  background: rgba(11, 20, 34, 0.95);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--border-radius-md);
+  box-shadow: var(--shadow-glass);
+  backdrop-filter: blur(24px);
+  padding: 6px;
+  z-index: 50;
+  display: none;
+  min-width: 160px;
+}
+
+.card-menu-dropdown.active {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  animation: fadeInDown 0.15s ease forwards;
+}
+
+.card-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 6px;
+  font-size: 12.5px;
+  color: #ffffff;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.15s ease;
+  width: 100%;
+}
+
+.card-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.card-menu-item.danger {
+  color: #f87171;
+}
+
+.card-menu-item.danger:hover {
+  background: rgba(239, 68, 68, 0.18);
+}
+
+.card-menu-item svg {
+  width: 14px;
+  height: 14px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* --- Empty State Card --- */
+.saved-empty-card {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 56px 24px;
+  text-align: center;
+  background: rgba(11, 20, 34, 0.55);
+  border: 1px dashed rgba(255, 255, 255, 0.18);
+  border-radius: var(--border-radius-xl);
+  backdrop-filter: blur(24px);
+}
+
+.empty-icon-circle {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.empty-icon-circle svg {
+  width: 32px;
+  height: 32px;
+  stroke: var(--accent-cyan);
+  fill: none;
+  stroke-width: 1.8;
+}
+
+.empty-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.empty-description {
+  font-size: 13.5px;
+  color: var(--text-muted);
+  max-width: 380px;
+  line-height: 1.45;
+  margin-bottom: 20px;
+}
+
+.btn-restore-defaults {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 20px;
+  border-radius: var(--border-radius-pill);
+  background: var(--primary-blue);
+  color: #ffffff;
+  border: none;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.4);
+  transition: var(--transition-smooth);
+}
+
+.btn-restore-defaults:hover {
+  background: #0294df;
+  transform: translateY(-1px);
+}
+
+/* --- Right Side Column --- */
+.saved-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 1. Favourite Locations Panel */
+.fav-panel {
+  padding: 18px 20px;
+}
+
+.fav-locations-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  list-style: none;
+  margin-top: 12px;
+}
+
+.fav-item-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  border-radius: var(--border-radius-md);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.fav-item-row:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.16);
+  transform: translateX(2px);
+}
+
+.fav-item-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fav-item-left svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--accent-cyan);
+  fill: none;
+  stroke-width: 2;
+}
+
+.fav-item-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.fav-item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fav-item-temp {
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.fav-item-icon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fav-item-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.fav-empty-hint {
+  font-size: 12.5px;
+  color: var(--text-muted);
+  text-align: center;
+  padding: 16px 8px;
+}
+
+/* 2. Quick Actions Panel */
+.quick-actions-panel {
+  padding: 18px 20px;
+}
+
+.quick-actions-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 12px;
+}
+
+.btn-action-wide {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 11px 16px;
+  border-radius: var(--border-radius-md);
+  font-size: 13.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.btn-action-refresh {
+  background: rgba(2, 132, 199, 0.3);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: #ffffff;
+}
+
+.btn-action-refresh:hover {
+  background: rgba(2, 132, 199, 0.5);
+  border-color: rgba(56, 189, 248, 0.6);
+  transform: translateY(-1px);
+}
+
+.btn-action-refresh svg {
+  width: 17px;
+  height: 17px;
+  stroke: var(--accent-cyan);
+  stroke-width: 2;
+  fill: none;
+}
+
+.btn-action-refresh.spinning svg {
+  animation: spinRefresh 0.8s linear infinite;
+}
+
+.btn-action-clear {
+  background: rgba(220, 38, 38, 0.2);
+  border: 1px solid rgba(239, 68, 68, 0.35);
+  color: #fca5a5;
+}
+
+.btn-action-clear:hover {
+  background: rgba(220, 38, 38, 0.35);
+  border-color: rgba(239, 68, 68, 0.55);
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.btn-action-clear svg {
+  width: 17px;
+  height: 17px;
+  stroke: currentColor;
+  stroke-width: 2;
+  fill: none;
+}
+
+/* 3. Tip Panel */
+.tip-panel {
+  position: relative;
+  padding: 18px 20px 24px 20px;
+  overflow: hidden;
+}
+
+.tip-header-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+
+.tip-header-row svg {
+  width: 18px;
+  height: 18px;
+  stroke: var(--accent-sun);
+  stroke-width: 2;
+  fill: none;
+}
+
+.tip-title {
+  font-size: 14.5px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.tip-body {
+  font-size: 12.5px;
+  color: rgba(255, 255, 255, 0.82);
+  line-height: 1.5;
+  max-width: 85%;
+  position: relative;
+  z-index: 2;
+}
+
+/* Golden Mountain Silhouette at bottom right */
+.tip-mountain-graphic {
+  position: absolute;
+  right: 10px;
+  bottom: 6px;
+  width: 110px;
+  height: 48px;
+  opacity: 0.75;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Toast Alert Popup Notification */
+.skycast-toast {
+  position: fixed;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(11, 20, 34, 0.95);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(24px);
+  padding: 12px 22px;
+  border-radius: var(--border-radius-pill);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
+}
+
+.skycast-toast.visible {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.skycast-toast.warning {
+  border-color: rgba(245, 158, 11, 0.6);
+}
+
+.skycast-toast.error {
+  border-color: rgba(239, 68, 68, 0.6);
+}
+
+.toast-icon {
+  width: 20px;
+  height: 20px;
+  stroke: var(--accent-cyan);
+  stroke-width: 2;
+  fill: none;
+  flex-shrink: 0;
+}
+
+.skycast-toast.warning .toast-icon {
+  stroke: var(--accent-sun);
+}
+
+.skycast-toast.error .toast-icon {
+  stroke: #f87171;
+}
+
+.toast-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+/* --- Responsive Media Queries --- */
+@media (max-width: 1200px) {
+  .saved-main-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-right-col {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+
+  .tip-panel {
+    grid-column: span 2;
+  }
+}
+
+@media (max-width: 900px) {
+  .stats-summary-bar {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    padding: 14px 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  .saved-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-right-col {
+    grid-template-columns: 1fr;
+  }
+
+  .tip-panel {
+    grid-column: span 1;
+  }
+
+  .search-add-bar-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn-add-location-pill {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-summary-bar {
+    grid-template-columns: 1fr;
+  }
+
+  .card-body-content {
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+  }
+
+  .card-metrics-col {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 0;
+    padding-top: 8px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+  }
+}

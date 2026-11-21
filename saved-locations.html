@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyCast – Saved Locations</title>
+  <meta name="description" content="Manage your saved weather locations and favourite cities with real-time temperature, condition updates, and quick access on SkyCast.">
+
+  <!-- Google Fonts for Clean Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme Engine (Zero-flash theme initialization) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core & Screen Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/saved-locations.css">
+</head>
+<body>
+
+  <!-- Full Application Wrapper with Scenic Background -->
+  <div class="app-container">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- 1. LEFT SIDEBAR (Fully Transparent Frosted Glass) -->
+    <aside class="sidebar" id="sidebar">
+      
+      <!-- Logo & Branding -->
+      <div class="brand-wrapper">
+        <div class="brand-icon-box">
+          <svg class="brand-cloud-icon" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SkyCast</span>
+          <span class="brand-subtitle">Weather Forecast</span>
+        </div>
+        <!-- Mobile Sidebar Close Button -->
+        <button class="btn-sidebar-close" id="sidebarCloseBtn" aria-label="Close navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Section -->
+      <nav class="nav-section">
+        <!-- Home -->
+        <a href="index.html" class="nav-link" title="Home Dashboard">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Forecast -->
+        <a href="forecast.html" class="nav-link" title="Detailed Forecast">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>Forecast</span>
+        </a>
+
+        <!-- Saved Locations (Active) -->
+        <a href="saved-locations.html" class="nav-link active" title="Saved Locations">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Saved Locations</span>
+        </a>
+
+        <!-- Alerts -->
+        <a href="alerts.html" class="nav-link" title="Weather Alerts">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span>Alerts</span>
+          <span class="nav-badge-dot" title="Active alerts"></span>
+        </a>
+
+        <!-- Settings -->
+        <a href="settings.html" class="nav-link" title="Settings">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <!-- My Locations Section -->
+      <div class="locations-section">
+        <div class="section-header-row">
+          <span class="section-title-sm">My Locations</span>
+          <button class="btn-add-location" id="sidebarAddLocationBtn" title="Add city" aria-label="Add city">+</button>
+        </div>
+
+        <ul class="location-item-list" id="sidebarLocationsList">
+          <!-- Populated dynamically via JS -->
+        </ul>
+      </div>
+
+      <!-- Install SkyCast Card -->
+      <div class="install-card">
+        <div class="install-header">
+          <div class="install-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <span class="install-title">Install SkyCast</span>
+        </div>
+        <p class="install-desc">Add to your device for a native app experience.</p>
+        <button class="btn-install" id="btnInstallApp">Install</button>
+      </div>
+
+    </aside>
+
+    <!-- 2. MAIN VIEWPORT (Header + Saved Locations Grid) -->
+    <main class="main-viewport">
+
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn-mobile-menu" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- User Greeting -->
+        <div class="user-greeting">
+          <span class="greeting-sub">Good Evening,</span>
+          <h1 class="greeting-name">Sivagnaneshvar</h1>
+        </div>
+
+        <!-- City Search Bar with Shortcut -->
+        <div class="search-wrapper">
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="topSearchInput" 
+              class="search-input" 
+              placeholder="Search for a city or place..." 
+              autocomplete="off"
+            />
+            <span class="search-kbd">/</span>
+          </div>
+
+          <!-- Dynamic Autocomplete Suggestions -->
+          <div class="search-results-dropdown" id="topSearchResults"></div>
+        </div>
+
+        <!-- Right Side Header Controls -->
+        <div class="header-actions">
+          
+          <!-- Celsius / Fahrenheit Unit Toggle -->
+          <div class="temp-toggle-capsule" role="radiogroup" aria-label="Temperature unit selection">
+            <button class="unit-btn active" data-unit="C" aria-label="Celsius">°C</button>
+            <button class="unit-btn" data-unit="F" aria-label="Fahrenheit">°F</button>
+          </div>
+
+          <!-- Notification Bell Button -->
+          <div class="btn-bell-wrapper">
+            <button class="btn-icon-circle" id="bellBtn" aria-label="View notifications">
+              <svg viewBox="0 0 24 24">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="bell-badge-dot" id="bellBadge"></span>
+            </button>
+
+            <!-- Notifications Dropdown Popover -->
+            <div class="notifications-dropdown" id="notificationsDropdown">
+              <div class="notifications-header">
+                <span class="notifications-title">Notifications</span>
+                <button class="btn-mark-read" id="markAllReadBtn">Mark all read</button>
+              </div>
+              <ul class="notification-list">
+                <li class="notification-item">
+                  <div class="notif-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                      <path d="M8 19v2M12 19v2M16 19v2"/>
+                    </svg>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-top-line">
+                      <span>Rain Alert</span>
+                      <span class="notif-time">10m ago</span>
+                    </div>
+                    <p class="notif-desc">Moderate rain expected in Coimbatore after 8:00 PM.</p>
+                  </div>
+                </li>
+                <li class="notification-item">
+                  <div class="notif-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-top-line">
+                      <span>Weather Update</span>
+                      <span class="notif-time">45m ago</span>
+                    </div>
+                    <p class="notif-desc">Temperature may drop to 24°C tonight.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- User Profile Avatar -->
+          <div class="profile-avatar-box" title="User Profile">
+            <img src="assets/images/avatar.jpg" alt="Sivagnaneshvar" class="profile-avatar-img">
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- Page Header: Saved Locations Title & Subtitle -->
+      <section class="saved-locations-header">
+        <div class="saved-title-row">
+          <div class="saved-header-icon-box">
+            <svg viewBox="0 0 24 24">
+              <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+            </svg>
+          </div>
+          <h2 class="saved-page-title">Saved Locations</h2>
+        </div>
+        <p class="saved-page-subtitle">Manage your favourite cities and check their weather at a glance.</p>
+      </section>
+
+      <!-- Search & Add City Bar Row -->
+      <section class="search-add-bar-row">
+        <div class="saved-search-wrapper">
+          <div class="saved-search-box">
+            <svg viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="savedSearchInput" 
+              class="saved-search-input" 
+              placeholder="Search and add a city..." 
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- Autocomplete Dropdown List -->
+          <div class="saved-search-dropdown" id="savedSearchDropdown">
+            <!-- Injected dynamically via JS -->
+          </div>
+        </div>
+
+        <button class="btn-add-location-pill" id="btnAddLocation">
+          <svg viewBox="0 0 24 24">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          <span>Add Location</span>
+        </button>
+      </section>
+
+      <!-- 4 Stats Summary Bar -->
+      <section class="stats-summary-bar" aria-label="Saved locations statistics">
+        <!-- 1. Saved Locations Count -->
+        <div class="stat-item-block">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+              <polyline points="2 17 12 22 22 17"></polyline>
+              <polyline points="2 12 12 17 22 12"></polyline>
+            </svg>
+          </div>
+          <div class="stat-text-group">
+            <span class="stat-main-value" id="statSavedCount">4</span>
+            <span class="stat-label-muted">Saved Locations</span>
+          </div>
+        </div>
+
+        <!-- 2. Favourites Count -->
+        <div class="stat-item-block">
+          <div class="stat-icon-wrapper fav">
+            <svg viewBox="0 0 24 24">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div class="stat-text-group">
+            <span class="stat-main-value" id="statFavCount">3</span>
+            <span class="stat-label-muted">Favourites</span>
+          </div>
+        </div>
+
+        <!-- 3. Just Updated -->
+        <div class="stat-item-block">
+          <div class="stat-icon-wrapper refresh">
+            <svg viewBox="0 0 24 24">
+              <polyline points="23 4 23 10 17 10"></polyline>
+              <polyline points="1 20 1 14 7 14"></polyline>
+              <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+            </svg>
+          </div>
+          <div class="stat-text-group">
+            <span class="stat-main-value" id="statUpdatedTitle">Just Updated</span>
+            <span class="stat-label-muted" id="statUpdatedTime">Today, 6:42 PM</span>
+          </div>
+        </div>
+
+        <!-- 4. Location Limit -->
+        <div class="stat-item-block">
+          <div class="stat-icon-wrapper">
+            <svg viewBox="0 0 24 24">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+              <circle cx="12" cy="10" r="3"></circle>
+            </svg>
+          </div>
+          <div class="stat-text-group">
+            <span class="stat-main-value" id="statLimitDisplay">4 / 8</span>
+            <span class="stat-label-muted">Location Limit</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Main Two-Column Layout -->
+      <div class="saved-main-grid">
+
+        <!-- LEFT COLUMN: Saved City Weather Cards Grid -->
+        <div class="saved-cards-container" id="savedCardsContainer">
+          <!-- Populated dynamically via JS -->
+        </div>
+
+        <!-- RIGHT COLUMN: Favourite Locations + Quick Actions + Tip -->
+        <div class="saved-right-col">
+
+          <!-- 1. Favourite Locations Card -->
+          <section class="glass-panel fav-panel" aria-label="Favourite Locations">
+            <div class="panel-header-row">
+              <div class="panel-title-group">
+                <svg viewBox="0 0 24 24" stroke="#facc15" fill="#facc15" style="width: 19px; height: 19px;">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                <h3 class="panel-title">Favourite Locations</h3>
+              </div>
+            </div>
+
+            <ul class="fav-locations-list" id="favLocationsList">
+              <!-- Populated dynamically via JS -->
+            </ul>
+          </section>
+
+          <!-- 2. Quick Actions Card -->
+          <section class="glass-panel quick-actions-panel" aria-label="Quick Actions">
+            <div class="panel-header-row">
+              <div class="panel-title-group">
+                <svg viewBox="0 0 24 24" stroke="#facc15" fill="none" style="width: 19px; height: 19px;">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+                <h3 class="panel-title">Quick Actions</h3>
+              </div>
+            </div>
+
+            <div class="quick-actions-btns">
+              <!-- Refresh All Locations -->
+              <button class="btn-action-wide btn-action-refresh" id="btnRefreshAll">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="23 4 23 10 17 10"></polyline>
+                  <polyline points="1 20 1 14 7 14"></polyline>
+                  <path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path>
+                </svg>
+                <span>Refresh All Locations</span>
+              </button>
+
+              <!-- Clear All Locations -->
+              <button class="btn-action-wide btn-action-clear" id="btnClearAll">
+                <svg viewBox="0 0 24 24">
+                  <polyline points="3 6 5 6 21 6"></polyline>
+                  <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+                  <line x1="10" y1="11" x2="10" y2="17"></line>
+                  <line x1="14" y1="11" x2="14" y2="17"></line>
+                </svg>
+                <span>Clear All Locations</span>
+              </button>
+            </div>
+          </section>
+
+          <!-- 3. Tip Card -->
+          <section class="glass-panel tip-panel" aria-label="Weather Tip">
+            <div class="tip-header-row">
+              <svg viewBox="0 0 24 24">
+                <line x1="9" y1="18" x2="15" y2="18"></line>
+                <line x1="10" y1="22" x2="14" y2="22"></line>
+                <path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5A4.61 4.61 0 0 1 8.91 14"></path>
+              </svg>
+              <h4 class="tip-title">Tip</h4>
+            </div>
+            <p class="tip-body">
+              Add your frequently checked cities as favourites for quick access and weather alerts.
+            </p>
+
+            <!-- Decorative Mountain Wave Line Graphic -->
+            <svg class="tip-mountain-graphic" viewBox="0 0 120 48" fill="none">
+              <path d="M 0 44 L 25 36 L 45 42 L 70 24 L 92 38 L 108 28 L 120 34" stroke="#FACC15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M 0 48 L 0 44 L 25 36 L 45 42 L 70 24 L 92 38 L 108 28 L 120 34 L 120 48 Z" fill="url(#mountainGrad)" opacity="0.3"/>
+              <defs>
+                <linearGradient id="mountainGrad" x1="60" y1="24" x2="60" y2="48" gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#FACC15" stop-opacity="0.5"/>
+                  <stop offset="1" stop-color="#FACC15" stop-opacity="0"/>
+                </linearGradient>
+              </defs>
+            </svg>
+          </section>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <!-- Interactive Floating Toast Message -->
+  <div class="skycast-toast" id="skycastToast">
+    <svg class="toast-icon" viewBox="0 0 24 24" id="toastIcon">
+      <circle cx="12" cy="12" r="10"></circle>
+      <line x1="12" y1="8" x2="12" y2="12"></line>
+      <line x1="12" y1="16" x2="12.01" y2="16"></line>
+    </svg>
+    <span class="toast-text" id="toastText">Notification message</span>
+  </div>
+
+  <!-- Subtle Demo Mode Indicator Chip -->
+  <div class="demo-mode-chip">
+    <span class="demo-dot"></span>
+    <span>Demo Data Mode</span>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/weather-service.js"></script>
+  <script src="js/saved-locations.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyCast – Detailed Weather Forecast</title>
+  <meta name="description" content="SkyCast detailed weather forecast with interactive 24-hour temperature trend, precipitation chance, hourly analytics, and seven-day outlook.">
+
+  <!-- Google Fonts for Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Theme Engine (Zero-flash theme initialization) -->
+  <script src="js/theme.js"></script>
+
+  <!-- Core & Screen Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/forecast.css">
+</head>
+<body>
+
+  <!-- Full App Container with Scenic Background -->
+  <div class="app-container">
+
+    <!-- Mobile Sidebar Backdrop Overlay -->
+    <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+    <!-- 1. LEFT SIDEBAR (Transparent Frosted Glass) -->
+    <aside class="sidebar" id="sidebar">
+      
+      <!-- Logo & Branding -->
+      <div class="brand-wrapper">
+        <div class="brand-icon-box">
+          <svg class="brand-cloud-icon" viewBox="0 0 24 24">
+            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96z"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <span class="brand-title">SkyCast</span>
+          <span class="brand-subtitle">Weather Forecast</span>
+        </div>
+        <!-- Mobile Sidebar Close Button -->
+        <button class="btn-sidebar-close" id="sidebarCloseBtn" aria-label="Close navigation">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Navigation Section -->
+      <nav class="nav-section">
+        <!-- Home -->
+        <a href="index.html" class="nav-link" title="Home Dashboard">
+          <svg viewBox="0 0 24 24">
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
+          </svg>
+          <span>Home</span>
+        </a>
+
+        <!-- Forecast (Active) -->
+        <a href="forecast.html" class="nav-link active" title="Detailed Forecast">
+          <svg viewBox="0 0 24 24">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>Forecast</span>
+        </a>
+
+        <!-- Saved Locations -->
+        <a href="saved-locations.html" class="nav-link" title="Saved Locations">
+          <svg viewBox="0 0 24 24">
+            <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"></path>
+          </svg>
+          <span>Saved Locations</span>
+        </a>
+
+        <!-- Alerts -->
+        <a href="alerts.html" class="nav-link" title="Weather Alerts">
+          <svg viewBox="0 0 24 24">
+            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+          </svg>
+          <span>Alerts</span>
+          <span class="nav-badge-dot" title="Active alerts"></span>
+        </a>
+
+        <!-- Settings -->
+        <a href="settings.html" class="nav-link" title="Settings">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <!-- My Locations Section -->
+      <div class="locations-section">
+        <div class="section-header-row">
+          <span class="section-title-sm">My Locations</span>
+          <button class="btn-add-location" title="Add city" aria-label="Add city" onclick="window.location.href='saved-locations.html'">+</button>
+        </div>
+
+        <ul class="location-item-list">
+          <li>
+            <button class="location-item-btn selected" data-location="coimbatore">
+              <div class="location-item-left">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Coimbatore</span>
+              </div>
+              <span class="location-item-temp">28°C</span>
+            </button>
+          </li>
+          <li>
+            <button class="location-item-btn" data-location="chennai">
+              <div class="location-item-left">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Chennai</span>
+              </div>
+              <span class="location-item-temp">31°C</span>
+            </button>
+          </li>
+          <li>
+            <button class="location-item-btn" data-location="ooty">
+              <div class="location-item-left">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Ooty</span>
+              </div>
+              <span class="location-item-temp">18°C</span>
+            </button>
+          </li>
+          <li>
+            <button class="location-item-btn" data-location="madurai">
+              <div class="location-item-left">
+                <svg viewBox="0 0 24 24">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Madurai</span>
+              </div>
+              <span class="location-item-temp">30°C</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Install SkyCast Card -->
+      <div class="install-card">
+        <div class="install-header">
+          <div class="install-icon-box">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+              <polyline points="7 10 12 15 17 10"></polyline>
+              <line x1="12" y1="15" x2="12" y2="3"></line>
+            </svg>
+          </div>
+          <span class="install-title">Install SkyCast</span>
+        </div>
+        <p class="install-desc">Add to your device for a native app experience.</p>
+        <button class="btn-install" id="btnInstallApp">Install</button>
+      </div>
+
+    </aside>
+
+    <!-- 2. MAIN VIEWPORT (Header + Detailed Forecast Content) -->
+    <main class="main-viewport">
+
+      <!-- Top Header Bar -->
+      <header class="top-header">
+        
+        <!-- Mobile Menu Toggle Button -->
+        <button class="btn-mobile-menu" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+
+        <!-- User Greeting -->
+        <div class="user-greeting">
+          <span class="greeting-sub">Good Evening,</span>
+          <h1 class="greeting-name">Sivagnaneshvar</h1>
+        </div>
+
+        <!-- City Search Bar with Shortcut -->
+        <div class="search-wrapper">
+          <div class="search-bar">
+            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="text" 
+              id="searchInput" 
+              class="search-input" 
+              placeholder="Search for a city or place..." 
+              autocomplete="off"
+            />
+            <span class="search-kbd">/</span>
+          </div>
+
+          <!-- Dynamic Autocomplete Suggestions -->
+          <div class="search-results-dropdown" id="searchResults"></div>
+        </div>
+
+        <!-- Right Side Header Controls -->
+        <div class="header-actions">
+          
+          <!-- Celsius / Fahrenheit Unit Toggle -->
+          <div class="temp-toggle-capsule" role="radiogroup" aria-label="Temperature unit selection">
+            <button class="unit-btn active" data-unit="C" aria-label="Celsius">°C</button>
+            <button class="unit-btn" data-unit="F" aria-label="Fahrenheit">°F</button>
+          </div>
+
+          <!-- Notification Bell Button -->
+          <div class="btn-bell-wrapper">
+            <button class="btn-icon-circle" id="bellBtn" aria-label="View notifications">
+              <svg viewBox="0 0 24 24">
+                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+              </svg>
+              <span class="bell-badge-dot" id="bellBadge"></span>
+            </button>
+
+            <!-- Notifications Dropdown Popover -->
+            <div class="notifications-dropdown" id="notificationsDropdown">
+              <div class="notifications-header">
+                <span class="notifications-title">Notifications</span>
+                <button class="btn-mark-read" id="markAllReadBtn">Mark all read</button>
+              </div>
+              <ul class="notification-list">
+                <li class="notification-item">
+                  <div class="notif-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                      <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/>
+                      <path d="M8 19v2M12 19v2M16 19v2"/>
+                    </svg>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-top-line">
+                      <span>Rain Alert</span>
+                      <span class="notif-time">10m ago</span>
+                    </div>
+                    <p class="notif-desc">Moderate rain expected in Coimbatore after 8:00 PM.</p>
+                  </div>
+                </li>
+                <li class="notification-item">
+                  <div class="notif-icon-box">
+                    <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </div>
+                  <div class="notif-content">
+                    <div class="notif-top-line">
+                      <span>Weather Update</span>
+                      <span class="notif-time">45m ago</span>
+                    </div>
+                    <p class="notif-desc">Temperature may drop to 24°C tonight.</p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- User Profile Avatar -->
+          <div class="profile-avatar-box" title="User Profile">
+            <img src="assets/images/avatar.jpg" alt="Sivagnaneshvar" class="profile-avatar-img">
+          </div>
+
+        </div>
+
+      </header>
+
+      <!-- Sub-Navigation Header Card -->
+      <div class="glass-panel forecast-header-card">
+        <div class="forecast-title-box">
+          <svg class="forecast-title-icon" viewBox="0 0 24 24" fill="none" stroke-width="2.2">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+          <h2 class="forecast-page-title" id="forecastPageTitle">Detailed Forecast – Coimbatore</h2>
+        </div>
+
+        <!-- Sub-Nav Filter Tabs -->
+        <div class="forecast-subnav">
+          <button class="subnav-pill active" data-tab="today">Today</button>
+          <button class="subnav-pill" data-tab="hourly">Hourly</button>
+          <button class="subnav-pill" data-tab="daily">Daily</button>
+          <button class="subnav-pill" data-tab="airquality">Air Quality</button>
+          <button class="subnav-pill" data-tab="sunmoon">Sun & Moon</button>
+        </div>
+      </div>
+
+      <!-- 1. Today's Weather Overview Stats Strip -->
+      <section class="glass-panel today-overview-strip" aria-label="Today's Weather Overview">
+        
+        <!-- Current Temp -->
+        <div class="overview-stat-item">
+          <div class="overview-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+            </svg>
+          </div>
+          <div class="overview-stat-info">
+            <span class="overview-stat-val" id="overviewCurrentTemp">28°C</span>
+            <span class="overview-stat-lbl">Current Temp</span>
+          </div>
+        </div>
+
+        <!-- Condition -->
+        <div class="overview-stat-item">
+          <div class="overview-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <circle cx="12" cy="12" r="5"></circle>
+              <line x1="12" y1="1" x2="12" y2="3"></line>
+              <line x1="12" y1="21" x2="12" y2="23"></line>
+              <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+              <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            </svg>
+          </div>
+          <div class="overview-stat-info">
+            <span class="overview-stat-val" id="overviewCondition">Partly Cloudy</span>
+            <span class="overview-stat-lbl">Condition</span>
+          </div>
+        </div>
+
+        <!-- Feels Like -->
+        <div class="overview-stat-item">
+          <div class="overview-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </div>
+          <div class="overview-stat-info">
+            <span class="overview-stat-val" id="overviewFeelsLike">29°C</span>
+            <span class="overview-stat-lbl">Feels Like</span>
+          </div>
+        </div>
+
+        <!-- High / Low -->
+        <div class="overview-stat-item">
+          <div class="overview-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+              <polyline points="17 6 23 6 23 12"></polyline>
+            </svg>
+          </div>
+          <div class="overview-stat-info">
+            <span class="overview-stat-val" id="overviewHighLow">29° / 24°</span>
+            <span class="overview-stat-lbl">High / Low</span>
+          </div>
+        </div>
+
+        <!-- Precipitation Chance -->
+        <div class="overview-stat-item">
+          <div class="overview-stat-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+            </svg>
+          </div>
+          <div class="overview-stat-info">
+            <span class="overview-stat-val" id="overviewRainChance">45%</span>
+            <span class="overview-stat-lbl">Rain Probability</span>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 2. Temperature Trend (24 Hours) Interactive Line Chart Panel -->
+      <section class="glass-panel chart-panel" aria-label="Temperature Trend 24 Hours">
+        <div class="chart-header-row">
+          <div class="chart-title-group">
+            <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+            </svg>
+            <h3 class="chart-title">Temperature (24 Hours)</h3>
+          </div>
+          <div class="chart-legend-row">
+            <div class="legend-item">
+              <span class="legend-dot-curve"></span>
+              <span>24h Forecast Curve</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-dot-high"></span>
+              <span>Daily Peak</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- SVG Line Chart Container -->
+        <div class="chart-svg-container">
+          <!-- Dynamic Floating Tooltip Bubble -->
+          <div class="chart-tooltip-bubble" id="chartTooltipBubble">
+            <span id="chartTooltipVal">28°C</span>
+            <span class="chart-tooltip-sub" id="chartTooltipTime">6:00 PM</span>
+          </div>
+
+          <svg class="chart-svg" id="chartSvg"></svg>
+        </div>
+      </section>
+
+      <!-- 3. Hourly Forecast (Next 24 Hours) Horizontal Scrolling -->
+      <section class="glass-panel" style="margin-bottom: 22px;" aria-label="Hourly Forecast Track">
+        <div class="panel-header-row">
+          <div class="panel-title-group">
+            <svg viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="10"></circle>
+              <polyline points="12 6 12 12 14 14"></polyline>
+            </svg>
+            <h3 class="panel-title">Hourly Forecast</h3>
+          </div>
+          <a href="#hourlyTrack" class="panel-link-right" id="next24HoursLink">
+            Next 24 Hours
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Horizontal Scrollable Hours Track -->
+        <div class="hourly-scroll-track" id="hourlyTrack">
+          <!-- Populated via forecast.js -->
+        </div>
+      </section>
+
+      <!-- 4. Split Grid: Precipitation Chance + Weather Details -->
+      <div class="forecast-split-grid">
+        
+        <!-- Precipitation Chance Bar Chart -->
+        <section class="glass-panel precip-chart-panel" aria-label="Precipitation Chance">
+          <div class="panel-header-row" style="margin-bottom: 4px;">
+            <div class="panel-title-group">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+              </svg>
+              <h3 class="panel-title">Precipitation Chance</h3>
+            </div>
+          </div>
+          
+          <!-- Bar Graph Area -->
+          <div class="precip-bars-container" id="precipBarsContainer">
+            <!-- Populated via forecast.js -->
+          </div>
+        </section>
+
+        <!-- Weather Details / Additional Details Card -->
+        <section class="glass-panel details-panel" aria-label="Weather Details">
+          <div class="panel-header-row" style="margin-bottom: 2px;">
+            <div class="panel-title-group">
+              <svg viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="12" y1="16" x2="12" y2="12"></line>
+                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+              </svg>
+              <h3 class="panel-title">Additional Details</h3>
+            </div>
+          </div>
+
+          <div class="details-grid">
+            <!-- Feels Like -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Feels Like</span>
+                <span class="detail-value" id="detailFeelsLike">29°C</span>
+              </div>
+            </div>
+
+            <!-- Visibility -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                  <circle cx="12" cy="12" r="3"></circle>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Visibility</span>
+                <span class="detail-value" id="detailVisibility">10 km</span>
+              </div>
+            </div>
+
+            <!-- Cloud Cover -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M18 10h-1.26A8 8 0 1 0 9 20h9a5 5 0 0 0 0-10z"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Cloud Cover</span>
+                <span class="detail-value" id="detailCloudCover">40%</span>
+              </div>
+            </div>
+
+            <!-- Dew Point -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Dew Point</span>
+                <span class="detail-value" id="detailDewPoint">21°C</span>
+              </div>
+            </div>
+
+            <!-- Humidity -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Humidity</span>
+                <span class="detail-value" id="detailHumidity">62%</span>
+              </div>
+            </div>
+
+            <!-- Wind -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Wind Speed</span>
+                <span class="detail-value" id="detailWind">15 km/h ENE</span>
+              </div>
+            </div>
+
+            <!-- Atmospheric Pressure -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">Pressure</span>
+                <span class="detail-value" id="detailPressure">1012 hPa</span>
+              </div>
+            </div>
+
+            <!-- UV Index -->
+            <div class="detail-item-box">
+              <div class="detail-icon-circle">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2">
+                  <circle cx="12" cy="12" r="4"></circle>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+                </svg>
+              </div>
+              <div class="detail-texts">
+                <span class="detail-name">UV Index</span>
+                <span class="detail-value" id="detailUvIndex">6 (Moderate)</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </div>
+
+      <!-- 5. Seven-Day Detailed Forecast Section -->
+      <section class="glass-panel seven-day-detailed-card" aria-label="Seven-Day Detailed Forecast">
+        <div class="panel-header-row">
+          <div class="panel-title-group">
+            <svg viewBox="0 0 24 24">
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            <h3 class="panel-title">Seven-Day Detailed Outlook</h3>
+          </div>
+          <span style="font-size: 12px; color: var(--text-muted);">Daily temperature ranges & rain probability</span>
+        </div>
+
+        <div class="seven-day-list" id="sevenDayDetailedList">
+          <!-- Populated via forecast.js -->
+        </div>
+      </section>
+
+    </main>
+
+  </div>
+
+  <!-- Subtle Demo Mode Indicator Chip -->
+  <div class="demo-mode-chip">
+    <span class="demo-dot"></span>
+    <span>Demo Data Mode</span>
+  </div>
+
+  <!-- Application Scripts -->
+  <script src="js/mock-data.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/weather-service.js"></script>
+  <script src="js/forecast.js"></script>
+
+</body>
+</html>
